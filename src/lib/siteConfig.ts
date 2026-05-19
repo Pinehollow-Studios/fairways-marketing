@@ -3,62 +3,70 @@
  *
  * When the App Store approves the final name, change the values in this file
  * (and update the OG image + favicon) and the entire site is rebranded.
- *
- * Anything that needs to swap with the name lives here — display copy, domain,
- * App Store URL, social handles, contact email. Layout / colours / structure
- * stay in code.
  */
 
 export type SiteConfig = {
-  /** Public-facing brand name. Used in titles, headers, OG tags. */
   brandName: string;
-  /** Short form for tight layouts (footer, navbar). */
   brandShortName: string;
-  /** Lower-case version for body copy ("the {brandLowerName} app does..."). */
   brandLowerName: string;
-  /** One-line product tagline. Shown under the wordmark + in social cards. */
+  /** Used in OG / page-title fallback. */
   tagline: string;
-  /** Domain without protocol — used for absolute URLs and OG. */
   domain: string;
-  /** App Store URL — null until live. Hides the App Store CTA when null. */
+  /** Null until live. When set, swap waitlist UI for App Store CTA. */
   appStoreUrl: string | null;
-  /** Contact email for footer + privacy queries. */
   contactEmail: string;
-  /** Hero stack — three lines composed for the page-hero composition. */
+
+  /** Hero composition — three-line serif stack with the italic word in the middle. */
   hero: {
-    /** UPPERCASE eyebrow caption above the hero stack. */
-    eyebrow: string;
-    /** First serif line ("Every course in"). */
-    line1: string;
-    /** Second serif line, rendered with the mint→lime gradient ("England"). */
-    line2Gradient: string;
-    /** Closing serif line, in soft italic ("tracked."). */
-    line3Italic: string;
-    /** Body paragraph below the hero stack. */
-    subhead: string;
+    /** UPPERCASE chip above the headline. Placeholder count rendered next to it. */
+    liveEyebrowTarget: number;
+    liveEyebrowLabel: string;
+    /** Three-part headline: [pre, italicWord, post]. */
+    headline: readonly [string, string, string];
+    /** Italic lede paragraph beneath the headline. */
+    lede: string;
+    /** Meta strip below the email field. */
+    metaStrip: ReadonlyArray<string>;
   };
-  /** The 3 product feature cards under the hero. */
+
+  /** Course marquee — duplicated automatically for seamless loop. */
+  marquee: ReadonlyArray<string>;
+
+  /** Stats strip — four cells. */
+  stats: ReadonlyArray<
+    | { kind: "number"; target: number; prefix?: string; suffix?: string; label: string }
+    | { kind: "static"; value: string; label: string }
+  >;
+
+  /** Three feature cards — `kind` selects the motif (atlas / tap / circle). */
   features: ReadonlyArray<{
+    kind: "atlas" | "tap" | "circle";
     eyebrow: string;
     title: string;
     body: string;
   }>;
-  /** Quiet B2B / "for golf clubs" block — plants the flag pre-launch. */
-  forClubs: {
-    eyebrow: string;
-    title: string;
-    body: string;
+
+  /** Closing CTA section. */
+  closingCta: {
+    eyebrowTarget: number;
+    eyebrowLabel: string;
+    headlinePre: string;
+    headlineItalic: string;
+    sub: string;
     ctaLabel: string;
-    /** mailto:, anchor, or a TBD link. */
-    ctaHref: string;
   };
-  /** Footer link groups. */
+
+  /** Section labels for the features header. */
+  featuresHeader: {
+    eyebrow: string;
+    titlePre: string;
+    titleItalic: string;
+    sub: string;
+  };
+
   footer: {
-    studioName: string;
-    /** Year + studio shown in the bottom rule. */
-    copyrightLine: string;
-    /** Right-hand small links. */
-    links: ReadonlyArray<{ label: string; href: string }>;
+    /** Short marks shown to the right of the wordmark. */
+    marks: ReadonlyArray<string>;
   };
 };
 
@@ -70,49 +78,88 @@ export const siteConfig: SiteConfig = {
   domain: "fairways.app",
   appStoreUrl: null,
   contactEmail: "hello@pinehollow.studio",
+
   hero: {
-    eyebrow: "Coming to iOS",
-    line1: "Every course in",
-    line2Gradient: "England",
-    line3Italic: "tracked.",
-    subhead:
-      "Mark the courses you've played. Watch the map fill in, counties tick over, and your collection grow round by round.",
+    liveEyebrowTarget: 2847,
+    liveEyebrowLabel: "joined the waiting list this week",
+    headline: ["Every course in ", "England", ", tracked."],
+    lede:
+      "An iPhone app to keep the golf courses you have played in England, and compare your collection with friends. Almost ready.",
+    metaStrip: ["iPhone, iOS 17+", "Free at launch", "Spring 2026"],
   },
+
+  marquee: [
+    "Royal Birkdale",
+    "Sunningdale",
+    "Walton Heath",
+    "Royal St George’s",
+    "The Berkshire",
+    "Royal Lytham",
+    "Royal Liverpool",
+    "St Enodoc",
+    "Saunton",
+    "Woodhall Spa",
+    "Royal Cinque Ports",
+    "Hillside",
+    "Royal North Devon",
+    "Ganton",
+    "Notts (Hollinwell)",
+    "Alwoodley",
+    "Royal St David’s",
+    "Princes",
+    "Burnham & Berrow",
+    "Trevose",
+  ],
+
+  stats: [
+    { kind: "number", target: 1842, label: "Courses, top to bottom" },
+    { kind: "number", target: 39, label: "Historic counties" },
+    { kind: "number", target: 0, prefix: "£", label: "Cost at launch" },
+    { kind: "static", value: "Spring ’26", label: "On the App Store" },
+  ],
+
+  featuresHeader: {
+    eyebrow: "Inside the app",
+    titlePre: "Three small ideas, ",
+    titleItalic: "kept simple.",
+    sub:
+      "No scorecards. No leaderboards. No shots gained. Just a quiet way to keep the places you have played, and look at where you should go next.",
+  },
+
   features: [
     {
-      eyebrow: "The map",
-      title: "An atlas of England's golf courses",
+      kind: "atlas",
+      eyebrow: "The atlas",
+      title: "Every course in England.",
       body:
-        "Every course in the country, county by county. Tap one you've played. Tap another. Counties light up as you complete them.",
+        "All 1,842 of them, from championship links to nine-hole village greens. The map is complete on the day we launch.",
     },
     {
-      eyebrow: "Round logging",
-      title: "Log a round, not a chore",
+      kind: "tap",
+      eyebrow: "One tap",
+      title: "A round, recorded.",
       body:
-        "Score, photo, who you played with, a short note. That's it. No data entry, no per-hole bookkeeping. The round is the memory.",
+        "Tap the course. That is it. No card to scan, no shots to log — the round is kept in the time it takes to read this sentence.",
     },
     {
-      eyebrow: "Friends",
-      title: "Compare collections, not handicaps",
+      kind: "circle",
+      eyebrow: "Your circle",
+      title: "A polite competition.",
       body:
-        "See where your friends have been. Tick off the same courses. The leaderboard counts where you've been — not how well you played there.",
+        "See whose collection runs deepest among the people you play with most. No global rankings. No streaks. No strangers.",
     },
   ],
-  forClubs: {
-    eyebrow: "For golf clubs",
-    title: "Understand who's playing your course",
-    body:
-      "We sell aggregated, anonymised insights to clubs — visitor profile, bucket-list demand, conversion trends. Individual user data is never sold or exposed. If you run a club and want a preview, get in touch.",
-    ctaLabel: "Talk to us",
-    ctaHref: "mailto:hello@pinehollow.studio?subject=Fairways%20for%20clubs",
+
+  closingCta: {
+    eyebrowTarget: 2847,
+    eyebrowLabel: "already on the list",
+    headlinePre: "Be among the ",
+    headlineItalic: "first.",
+    sub: "One note when the App Store listing arrives. Nothing else. We promise.",
+    ctaLabel: "Get notified",
   },
+
   footer: {
-    studioName: "Pinehollow Studios",
-    copyrightLine: `© ${new Date().getFullYear()} Pinehollow Studios Limited`,
-    links: [
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "Contact", href: "mailto:hello@pinehollow.studio" },
-    ],
+    marks: ["Pinehollow Studios", "Sheffield", "MMXXVI"],
   },
 };

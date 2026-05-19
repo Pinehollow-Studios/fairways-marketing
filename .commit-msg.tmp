@@ -1,0 +1,34 @@
+feat: port Claude-design handoff to the marketing site
+
+Verbatim port of /handoff/ — the working HTML+React design — into
+production-ready Next.js 16 + TypeScript.
+
+Composition:
+- Aurora hero (mouse-tracked mint glow, drifting blobs, grain)
+- Word-by-word RevealHeadline with mint-to-lime italic shimmer
+- Live waitlist eyebrow + glass email pill
+- Course marquee (20 courses, seamless loop, edge-faded)
+- Stats strip (1,842 / 39 / £0 / Spring '26) with count-up
+- Three feature cards with animated SVG motifs (atlas / tap / circle)
+- Closing CTA with mint glow + second email pill
+- Footer
+
+Production tasks from handoff/README.md:
+- TweaksPanel stripped; palette + backdrop mode hardcoded
+- GlassEmail wired to the existing joinWaitlist server action via
+  useActionState (preserves Resend Audiences noop-mode flow)
+- All brand strings lifted into src/lib/siteConfig.ts — marquee,
+  headline, lede, stats, features, closing-CTA, footer marks
+
+Atlas tokens + motion CSS merged into globals.css. Source Serif 4
++ Inter continue to load via next/font; "Source Serif 4" literal
+family-name refs swapped for var(--font-display).
+
+Old scaffold components (Hero, Features, ForClubs, AtlasBackdrop,
+Wordmark, WaitlistForm, SiteHeader, SiteFooter) deleted — fully
+superseded by src/components/marketing/.
+
+Build green; TypeScript strict pass; placeholder counters (2,847)
+preserved per "copy perfectly first" instruction.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
