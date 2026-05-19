@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/siteConfig";
 
@@ -9,10 +9,14 @@ const inter = Inter({
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
+// Modern editorial serif — variable opsz / SOFT / WONK axes for character.
+// Replaces Source Serif 4; the existing italic-gradient shimmer treatment
+// in RevealHeadline keys off the italic style, which Fraunces ships in
+// every weight.
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-source-serif",
-  weight: ["400", "500", "600"],
+  variable: "--font-display-face",
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -47,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${sourceSerif.variable}`}
+      className={`${inter.variable} ${fraunces.variable}`}
     >
       <body>{children}</body>
     </html>

@@ -82,10 +82,10 @@ export const siteConfig: SiteConfig = {
   hero: {
     liveEyebrowTarget: 2847,
     liveEyebrowLabel: "joined the waiting list this week",
-    headline: ["Every course in ", "England", ", tracked."],
+    headline: ["Every course in England, ", "tracked", "."],
     lede:
       "An iPhone app to keep the golf courses you have played in England, and compare your collection with friends. Almost ready.",
-    metaStrip: ["iPhone, iOS 17+", "Free at launch", "Spring 2026"],
+    metaStrip: ["iPhone, iOS 17+", "Free at launch", "Summer 2027"],
   },
 
   marquee: [
@@ -115,7 +115,7 @@ export const siteConfig: SiteConfig = {
     { kind: "number", target: 1842, label: "Courses, top to bottom" },
     { kind: "number", target: 39, label: "Historic counties" },
     { kind: "number", target: 0, prefix: "£", label: "Cost at launch" },
-    { kind: "static", value: "Spring ’26", label: "On the App Store" },
+    { kind: "static", value: "Summer ’27", label: "On the App Store" },
   ],
 
   featuresHeader: {
@@ -123,7 +123,7 @@ export const siteConfig: SiteConfig = {
     titlePre: "Three small ideas, ",
     titleItalic: "kept simple.",
     sub:
-      "No scorecards. No leaderboards. No shots gained. Just a quiet way to keep the places you have played, and look at where you should go next.",
+      "No swing analysis. No data dashboards. Just a quiet way to keep the places you have played, mark a score if you like, and see how your collection stands.",
   },
 
   features: [
@@ -137,16 +137,16 @@ export const siteConfig: SiteConfig = {
     {
       kind: "tap",
       eyebrow: "One tap",
-      title: "A round, recorded.",
+      title: "A round, kept.",
       body:
-        "Tap the course. That is it. No card to scan, no shots to log — the round is kept in the time it takes to read this sentence.",
+        "Tap the course. Add a score if you want to. No card to scan, no per-hole bookkeeping — the round is kept in the time it takes to read this sentence.",
     },
     {
       kind: "circle",
       eyebrow: "Your circle",
       title: "A polite competition.",
       body:
-        "See whose collection runs deepest among the people you play with most. No global rankings. No streaks. No strangers.",
+        "See whose collection runs deepest — among your friends, and across the country. No streaks. No strangers in your feed.",
     },
   ],
 

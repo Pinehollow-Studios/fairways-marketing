@@ -45,7 +45,7 @@
   --on-amber:  #3D2308;
 
   /* ─── Type families (next/font wires the actual @font-face) ─ */
-  --font-display: var(--font-source-serif), "New York", ui-serif, Georgia, serif;
+  --font-display: var(--font-display-face), "New York", ui-serif, Georgia, serif;
   --font-ui:      var(--font-inter), -apple-system, "SF Pro", system-ui, "Inter", sans-serif;
   --font-mono:    "SF Mono", ui-monospace, "JetBrains Mono", monospace;
   --num-features: "tnum" 1, "lnum" 1;
