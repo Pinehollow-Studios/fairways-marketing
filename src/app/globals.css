@@ -637,8 +637,10 @@ html, body { background: #06090E; }
   z-index: 2;
   padding: clamp(60px, 8vw, 140px) clamp(20px, 5vw, 80px) clamp(80px, 8vw, 140px);
   text-align: center;
-  /* overflow removed so the .fw-cta-glow blur can bleed naturally
-     into the adjacent fade strip — strengthens the colour transition. */
+  /* overflow:hidden contains the glow so its blur cannot bleed into
+     the footer or the adjacent fade strip. The fade strip handles
+     the section transition independently. */
+  overflow: hidden;
 }
 .fw-cta-glow {
   position: absolute;
@@ -649,12 +651,6 @@ html, body { background: #06090E; }
   opacity: 0.35;
   pointer-events: none;
   z-index: 0;
-  /* Slow breathing pulse — keeps the CTA section feeling alive */
-  animation: fw-cta-breathe 6s ease-in-out infinite;
-}
-@keyframes fw-cta-breathe {
-  0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
-  50%      { opacity: 0.42; transform: translate(-50%, -50%) scale(1.06); }
 }
 .fw-cta-title {
   position: relative;

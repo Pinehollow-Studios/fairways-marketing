@@ -38,9 +38,9 @@ export type SiteConfig = {
     | { kind: "static"; value: string; label: string }
   >;
 
-  /** Three feature cards — `kind` selects the motif (atlas / tap / circle). */
+  /** Three feature cards — `kind` selects the motif (atlas / tap / board). */
   features: ReadonlyArray<{
-    kind: "atlas" | "tap" | "circle";
+    kind: "atlas" | "tap" | "board";
     eyebrow: string;
     title: string;
     body: string;
@@ -142,7 +142,7 @@ export const siteConfig: SiteConfig = {
         "Tap the course. Add a score if you want to. No card to scan, no per-hole bookkeeping — the round is kept in the time it takes to read this sentence.",
     },
     {
-      kind: "circle",
+      kind: "board",
       eyebrow: "Your circle",
       title: "A polite competition.",
       body:
