@@ -8,7 +8,6 @@ import {
   FwLockup,
   LiveEyebrow,
   RevealHeadline,
-  FooterMark,
 } from "./atoms";
 import { GlassEmail } from "./GlassEmail";
 import { CourseMarquee } from "./CourseMarquee";
@@ -223,13 +222,36 @@ export function MarketingApp() {
       {/* ═══ FOOTER ════════════════════════════════════════ */}
       <footer className="fw-footer">
         <FwLockup palette={PALETTE} size={22} label={siteConfig.brandName.toUpperCase()} />
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-          {siteConfig.footer.marks.map((m, i) => (
-            <FooterMark key={i} dim>
-              {m}
-            </FooterMark>
-          ))}
-        </span>
+        <div className="fw-footer-meta">
+          <a
+            className="fw-footer-mark"
+            href={siteConfig.footer.studio.website}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {siteConfig.footer.studio.name}
+          </a>
+          <span className="fw-footer-sep" aria-hidden>
+            ·
+          </span>
+          <a
+            className="fw-footer-link"
+            href={`mailto:${siteConfig.footer.studio.email}`}
+          >
+            {siteConfig.footer.studio.email}
+          </a>
+          <span className="fw-footer-sep" aria-hidden>
+            ·
+          </span>
+          <a
+            className="fw-footer-link"
+            href={siteConfig.footer.studio.website}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {siteConfig.footer.studio.websiteLabel}
+          </a>
+        </div>
       </footer>
     </div>
   );

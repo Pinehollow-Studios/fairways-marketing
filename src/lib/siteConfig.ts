@@ -80,8 +80,17 @@ export type SiteConfig = {
   };
 
   footer: {
-    /** Short marks shown to the right of the wordmark. */
-    marks: ReadonlyArray<string>;
+    /** Studio attribution + contact, shown to the right of the wordmark. */
+    studio: {
+      /** Legal company name. Renders UPPERCASE, links to website. */
+      name: string;
+      /** Contact email. Renders lowercase as a mailto: link. */
+      email: string;
+      /** Studio website URL (https://...). */
+      website: string;
+      /** Display label for the website link (e.g. "pinehollow.studio"). */
+      websiteLabel: string;
+    };
   };
 };
 
@@ -203,6 +212,11 @@ export const siteConfig: SiteConfig = {
   },
 
   footer: {
-    marks: ["Pinehollow Studios Limited"],
+    studio: {
+      name: "Pinehollow Studios Limited",
+      email: "hello@pinehollow.studio",
+      website: "https://www.pinehollow.studio/",
+      websiteLabel: "pinehollow.studio",
+    },
   },
 };
