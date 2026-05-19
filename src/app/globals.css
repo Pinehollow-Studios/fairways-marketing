@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Atlas — design tokens mirrored from Fairways-ios.
+   Source of truth: Fairways/DesignSystem/Theme.swift +
+   AtlasV2/Tokens.swift. Dark-only by design.
+   ========================================================= */
+
+:root {
+  /* Surfaces */
+  --color-paper: #0e1822;
+  --color-paper-raised: #142235;
+  --color-paper-sunken: #1a2b3f;
+  --color-rule: rgba(255, 255, 255, 0.1);
+  --color-rule-strong: rgba(255, 255, 255, 0.18);
+
+  /* Ink (text) */
+  --color-ink: #f3f0e5;
+  --color-ink-2: #a8b3c0;
+  --color-ink-3: #6e7a89;
+
+  /* Brand accents */
+  --color-accent: #5be4c3;   /* mint */
+  --color-accent-2: #8fe85b; /* lime — second stop of accent gradient */
+  --color-on-accent: #0a1a22;
+  --color-amber: #f4a85c;
+  --color-on-amber: #3d2308;
+  --color-claret: #e2664e;
+
+  /* Sea ramp (Atlas ocean radial) */
+  --color-sea-1: #0e1822;
+  --color-sea-2: #1b2d42;
+  --color-sea-3: #26405e;
+
+  /* Topographic ramp (county fills) — kept for future map visualisation */
+  --color-ramp-sand: #e9d2a4;
+  --color-ramp-moss: #7bb47a;
+  --color-ramp-pine: #2d7a3f;
+  --color-ramp-peak: #1a4d2e;
+
+  /* Glass — raw rgba primitives matching iOS Theme.Color */
+  --color-glass-thin: rgba(18, 30, 44, 0.55);
+  --color-glass-standard: rgba(22, 36, 54, 0.78);
+  --color-glass-heavy: rgba(14, 24, 34, 0.85);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --color-glass-border-heavy: rgba(255, 255, 255, 0.14);
+  --color-glass-highlight: rgba(255, 255, 255, 0.14);
+}
+
+@theme inline {
+  /* Expose tokens as Tailwind utilities (bg-paper, text-ink, border-rule, etc.). */
+  --color-paper: var(--color-paper);
+  --color-paper-raised: var(--color-paper-raised);
+  --color-paper-sunken: var(--color-paper-sunken);
+  --color-rule: var(--color-rule);
+  --color-rule-strong: var(--color-rule-strong);
+
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+
+  --color-accent: var(--color-accent);
+  --color-accent-2: var(--color-accent-2);
+  --color-on-accent: var(--color-on-accent);
+  --color-amber: var(--color-amber);
+  --color-on-amber: var(--color-on-amber);
+  --color-claret: var(--color-claret);
+
+  --color-sea-1: var(--color-sea-1);
+  --color-sea-2: var(--color-sea-2);
+  --color-sea-3: var(--color-sea-3);
+
+  --color-glass-thin: var(--color-glass-thin);
+  --color-glass-standard: var(--color-glass-standard);
+  --color-glass-heavy: var(--color-glass-heavy);
+  --color-glass-border: var(--color-glass-border);
+  --color-glass-highlight: var(--color-glass-highlight);
+
+  /* Type ladder (next/font wires the family vars). */
+  --font-display: var(--font-source-serif);
+  --font-sans: var(--font-inter);
+
+  /* Atlas radii (matches Theme.Radius). */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-xxl: 28px;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Atlas selection — mint on near-black, matches the iOS feel. */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* Utility — UPPERCASE eyebrow label with the Atlas tracking. */
+.atlas-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em; /* matches +0.6 tracking */
+  text-transform: uppercase;
+  color: var(--color-ink-2);
+}
+
+/* Utility — display-numeral helper for hero numerals with tabular figures. */
+.atlas-numeral {
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
